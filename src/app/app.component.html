@@ -1,22 +1,33 @@
 <div>
-  <div class="bg-[url('F:/Users/Scorp/Frontend-learning/angular/images/images.png')] w-[100vw] h-[200px] bg-auto bg-no-repeat bg-center">
-  </div>
-  <div class="flex justify-center">
-      <input class="border-solid border-black border rounded-full px-4 py-2" placeholder="поиск">
-  </div>
-
-    <div class="overflow-x-scroll snap-x">
-      <div class="flex space-x-4 p-1">
-        <button *ngFor="let item  of itemTypeList;let i=index" class="px-3 py-1 h-[50px]  bg-white rounded-lg whitespace-nowrap "
-        (click)="handlItemClick(item,i)"
-        [ngClass]="{'blink-animation': isBlinkingIndex === i}">
-          {{item}}
-        </button>
+  <div class="flex items-center"> 
+    <div class="bg-[url('F:/Users/Scorp/Frontend-learning/angular/images/images.png')]  h-[200px] w-[50%] bg-auto bg-no-repeat bg-center">
     </div>
-  
-  
+    <a href="https://www.sweaterpi.com/#/home" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+      Сайт с товарами
+    </a>    
   </div>
-  <div class="  flex justify-center flex-wrap gap-1">
-    <app-product *ngFor="let product of productList" [product]="product"></app-product>
-  </div>
+    <div class="flex justify-center">
+        <input class="border-solid border-black border rounded-full px-4 py-2" placeholder="поиск">
+    </div>
+
+   
+    <div *ngIf="!selectProduct">
+      <div class="overflow-x-scroll snap-x">
+        <div class="flex space-x-4 p-1">
+          <button *ngFor="let item  of itemTypeList;let i=index" class="px-3 py-1 h-[50px]  bg-white rounded-lg whitespace-nowrap "
+          (click)="handlItemClick(item.name,i)"
+          [ngClass]="{'blink-animation': isBlinkingIndex === i}">
+            {{item.name}}
+          </button>
+       </div>
+      </div>
+      <div class="flex justify-center flex-wrap gap-1 relative" *ngIf="!loading"  (scroll)="onScroll($event)">
+        <app-product *ngFor="let product of productList" [product]="product"  [product]="product" (productOutput)="receiveProductFromChild($event)"></app-product>
+        <p *ngIf="productList.length === 0">Нет товаров</p>
+      </div>
+      <div class="flex justify-center flex-wrap gap-1" >
+        <p *ngIf="loading">Загрузка...</p>
+      </div>
+    </div>
+    <app-product-detail *ngIf="selectProduct" [product]="selectedProduct" (detailOutput)="receiveProductFromChild1($event)"></app-product-detail>
 </div>

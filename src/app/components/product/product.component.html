@@ -1,7 +1,6 @@
 <div>
-    <div class="block w-[120px] h-[250px] border-solid rounded-lg ">
-        <img src="{{product.image}} " class="w-[100%] h-[180px] object-fill ">
-        <div class="overflow-hidden text-ellipsis whitespace-nowrap">{{ product.title }}</div>     
-        {{product.category}}  <br>      
+    <div class="block w-[120px] h-[200px] border-solid rounded-lg bg-blue-600 overflow-hidden " (click)="productDetail()">
+        <img src="{{product.image}} " class="w-[100%] h-[130px] object-fill ">
+        <div class="overflow-hidden line-clamp-2">{{ product.title }}</div>         
         {{product.price|currency }}
     </div>

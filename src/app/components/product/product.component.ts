@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { Product } from '../../common/Product';
 import { CommonModule } from '@angular/common';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
   selector: 'app-product',
@@ -11,4 +12,11 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductComponent {
   @Input() product:Product;
+  @Output() productOutput: EventEmitter<Product> = new EventEmitter<Product>();
+
+  productDetail() {
+
+    this.productOutput.emit(this.product);
+    
+  }
 }
