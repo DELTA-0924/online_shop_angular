@@ -46,7 +46,7 @@ export class AppComponent implements OnInit{
         debounceTime(300),
         distinctUntilChanged(),  
         tap(value => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo(0, 0)
           this.search = value !== ''; // Set the flag based on input value
         }),
         switchMap(query => this.InitsearchProducts(query))
@@ -73,10 +73,10 @@ export class AppComponent implements OnInit{
     this.isLoading = true;
    // console.log("laod")
     if(this.search==false ||this.carrentquery==''){
-           console.log("get")          
+         //  console.log("get")          
            this.normalGet()
   }else {
-    console.log("get1")
+   // console.log("get1")
       this.searchGet()
   }
    this.loading=true;
@@ -90,18 +90,18 @@ export class AppComponent implements OnInit{
     //console.log(height - position)
     // Check if the user is scrolling down and approaching the bottom of the page
     if (window.scrollY < this.lastScrollPosition) {
-      console.log("loadin to true ")
+ //     console.log("loadin to true ")
       this.isLoading = true; // Reset isLoading flag when scrolling up
     }
-   console.log(this.isLoading )
-    console.log(this.endOfList )
+ //  console.log(this.isLoading )
+   // console.log(this.endOfList )
 
     if (height - position <= this.threshold && !this.isLoading && !this.endOfList) {
       this.threshold=this.threshold-150;
 
       this.loadProducts();
       this.isLoading = true; // Set isLoading flag to true to prevent concurrent requests
-      console.log("Loading more products...");
+    //  console.log("Loading more products...");
     }
     
     // Additional check to prevent loading if the user scrolls back up to an area that was already loaded
