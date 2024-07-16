@@ -6,7 +6,7 @@ import { Product } from '../common/Product';
   providedIn: 'root'
 })
 export class ProductService {
-  private  url:string="http://backend:8000"
+  private  url:string="/api"
   constructor(private http:HttpClient) { }
   get():Observable<any>{
     let limit=new HttpParams().append("limit",5);

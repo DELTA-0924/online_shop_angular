@@ -10,7 +10,7 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-        
+ 
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
@@ -59,9 +59,12 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
-          
+        "serve": {    
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "shop:build",
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "shop:build:production"
