@@ -7,11 +7,11 @@ WORKDIR /app
 # Копируем файлы package.json и package-lock.json для установки зависимостей
 COPY frontend/shop/package*.json ./
 
-RUN npm install
+RUN npm install || npm install
 COPY frontend/shop/ ./
-RUN npm run build
+RUN npm run build 
 
 
-FROM nginx:latest
-COPY ../../nginx/nginx.conf /etc/nginx/nginx.conf
+FROM nginx:alpine
+COPY ../../nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist/shop/browser /usr/share/nginx/html
